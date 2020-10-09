@@ -26,11 +26,14 @@ class FetchGithub extends React.Component {
   }
 
   render() {
-    return [
-      <h1 key="name">{`Nombre: ${this.state.name}`}</h1>,
-      //incorrect use of state property 'location'
-      <h2 key="location">{`País: ${this.state.location}`}</h2>
-    ];
+    return (
+      //change to Fragments
+      <>
+        <h1 key="name">{`Nombre: ${this.state.name}`}</h1>
+        {/* incorrect use of state property 'location' */}
+        <h2 key="location">{`País: ${this.state.location}`}</h2>
+      </>
+    );
   }
 }
 
