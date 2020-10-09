@@ -6,7 +6,10 @@ class FetchGithub extends React.Component {
     super(props);
     this.state = {
       name: '',
-      location: ''
+      location: '',
+      //add state error
+      error: null
+      //
     };
   //missing closing bracket
   }
@@ -22,18 +25,32 @@ class FetchGithub extends React.Component {
           name: res.name,
           location: res.location
         })
+      },
+      //add handle error
+      error => {
+        this.setState({
+          error
+        });
+      //
       });
   }
 
   render() {
-    return (
-      //change to Fragments
-      <>
-        <h1 key="name">{`Nombre: ${this.state.name}`}</h1>
-        {/* incorrect use of state property 'location' */}
-        <h2 key="location">{`País: ${this.state.location}`}</h2>
-      </>
-    );
+    //show the error if there is one
+    const { error } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else{
+    //
+      return (
+        //change to Fragments
+        <>
+          <h1 key="name">{`Nombre: ${this.state.name}`}</h1>
+          {/* incorrect use of state property 'location' */}
+          <h2 key="location">{`País: ${this.state.location}`}</h2>
+        </>
+      );
+    }
   }
 }
 
