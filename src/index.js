@@ -8,7 +8,10 @@ class FetchGithub extends React.Component {
       name: '',
       location: ''
     };
-  
+  //missing closing bracket
+  }
+  //
+
   componentDidMount() {
     fetch('https://api.github.com/users/workshopsjsmvd')
       .then(res => {
