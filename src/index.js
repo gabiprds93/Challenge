@@ -5,6 +5,8 @@ class FetchGithub extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //add state for loading
+      isLoaded: false,
       name: '',
       location: '',
       //add state error
@@ -22,6 +24,9 @@ class FetchGithub extends React.Component {
       //
       .then(res => {
         this.setState({
+          //change status to show loading
+          isLoaded: true,
+          //
           name: res.name,
           location: res.location
         })
@@ -29,6 +34,9 @@ class FetchGithub extends React.Component {
       //add handle error
       error => {
         this.setState({
+          //change status to show loading
+          isLoaded: true,
+          //
           error
         });
       //
@@ -37,9 +45,12 @@ class FetchGithub extends React.Component {
 
   render() {
     //show the error if there is one
-    const { error } = this.state;
+    const { error, isLoaded } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
+    // show loading before API response
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
     } else{
     //
       return (
