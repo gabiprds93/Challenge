@@ -11,17 +11,14 @@ class FetchGithub extends React.Component {
       user: null,
       //add state error
       error: null
-      //
     };
   //missing closing bracket
   }
-  //
 
   componentDidMount() {
     fetch('https://api.github.com/users/workshopsjsmvd')
       //the API call did not succeed
       .then(res => res.json())
-      //
       .then(result => {
         this.setState({
           //change status to show loading
@@ -35,10 +32,8 @@ class FetchGithub extends React.Component {
         this.setState({
           //change status to show loading
           isLoaded: true,
-          //
           error
         });
-      //
       });
   }
 
@@ -51,7 +46,6 @@ class FetchGithub extends React.Component {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else{
-    //
       return (
         //change to Fragments
         <>
