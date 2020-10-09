@@ -14,6 +14,9 @@ class FetchGithub extends React.Component {
 
   componentDidMount() {
     fetch('https://api.github.com/users/workshopsjsmvd')
+      //the API call did not succeed
+      .then(res => res.json())
+      //
       .then(res => {
         this.setState({
           name: res.name,
