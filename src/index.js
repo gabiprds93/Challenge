@@ -7,8 +7,8 @@ class FetchGithub extends React.Component {
     this.state = {
       //add state for loading
       isLoaded: false,
-      name: '',
-      location: '',
+      //add state for user data
+      user: null,
       //add state error
       error: null
       //
@@ -22,13 +22,12 @@ class FetchGithub extends React.Component {
       //the API call did not succeed
       .then(res => res.json())
       //
-      .then(res => {
+      .then(result => {
         this.setState({
           //change status to show loading
           isLoaded: true,
-          //
-          name: res.name,
-          location: res.location
+          //assign the API response to user
+          user: result
         })
       },
       //add handle error
@@ -45,7 +44,7 @@ class FetchGithub extends React.Component {
 
   render() {
     //show the error if there is one
-    const { error, isLoaded } = this.state;
+    const { error, isLoaded, user } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     // show loading before API response
@@ -56,9 +55,10 @@ class FetchGithub extends React.Component {
       return (
         //change to Fragments
         <>
-          <h1 key="name">{`Nombre: ${this.state.name}`}</h1>
+          {/*user user state, unnecessary key property  */}
+          <h1>{`Nombre: ${user.name}`}</h1>
           {/* incorrect use of state property 'location' */}
-          <h2 key="location">{`País: ${this.state.location}`}</h2>
+          <h2>{`País: ${user.location}`}</h2>
         </>
       );
     }
